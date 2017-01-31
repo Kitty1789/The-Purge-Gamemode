@@ -4,27 +4,27 @@ AddCSLuaFile("shared.lua")
 
 MsgN("_-_-_-_- purge Server Side -_-_-_-_")
 MsgN("Loading Server Files")
-for _, file in pairs (file.Find("ThePurge/gamemode/server/*.lua", "LUA")) do
+for _, file in pairs (file.Find("purge/gamemode/server/*.lua", "LUA")) do
 	MsgN("-> "..file)
-	include("ThePurge/gamemode/server/"..file)
+	include("purge/gamemode/server/"..file)
 end
 
 MsgN("Loading Shared Files")
-for _, file in pairs (file.Find("ThePurge/gamemode/shared/*.lua", "LUA")) do
+for _, file in pairs (file.Find("purge/gamemode/shared/*.lua", "LUA")) do
 	MsgN("-> "..file)
-	AddCSLuaFile("ThePurge/gamemode/shared/"..file)
+	AddCSLuaFile("purge/gamemode/shared/"..file)
 end
 
 MsgN("Loading Clientside Files")
-for _, file in pairs (file.Find("ThePurge/gamemode/client/*.lua", "LUA")) do
+for _, file in pairs (file.Find("purge/gamemode/client/*.lua", "LUA")) do
 	MsgN("-> "..file)
-	AddCSLuaFile("ThePurge/gamemode/client/"..file)
+	AddCSLuaFile("purge/gamemode/client/"..file)
 end
 
 MsgN("Loading Clientside VGUI Files")
-for _, file in pairs (file.Find("ThePurge/gamemode/client/vgui/*.lua", "LUA")) do
+for _, file in pairs (file.Find("purge/gamemode/client/vgui/*.lua", "LUA")) do
 	MsgN("-> "..file)
-	AddCSLuaFile("ThePurge/gamemode/client/vgui/"..file)
+	AddCSLuaFile("purge/gamemode/client/vgui/"..file)
 end
 
 -- Timer ConVars! Yay!

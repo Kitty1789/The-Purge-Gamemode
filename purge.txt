@@ -1,4 +1,4 @@
-"ThePurge"
+"purge"
 {
     "title"     "The Purge"
     "maps"      ""

@@ -8,8 +8,8 @@ GM.Email 	= "N/A"
 GM.Website 	= "https://wtcghostcommunity.com"
 
 -- Include Shared files
-for _, file in pairs (file.Find("ThePurge/gamemode/shared/*.lua", "LUA")) do
-   include("ThePurge/gamemode/shared/"..file);
+for _, file in pairs (file.Find("purge/gamemode/shared/*.lua", "LUA")) do
+   include("purge/gamemode/shared/"..file);
 end
 
 TEAM_PLAYER = 2
