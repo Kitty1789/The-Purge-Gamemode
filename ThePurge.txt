@@ -1,0 +1,11 @@
+"ThePurge"
+{
+    "title"     "The Purge"
+    "maps"      ""
+    "base"      "base"
+    "menusystem"	"0"
+
+    "author_name"   "WTC - GhostCommunity"
+    "author_email"  "n/a"
+    "author_url"    "https://wtcghostcommunity.com"
+}
