@@ -1,157 +1,92 @@
-local x = ScrW()
-local y = ScrH()
+scoreboard = scoreboard or {}
+scoreboard.ranks = {}
+scoreboard.ranks['superadmin'] = 'Owner'
+scoreboard.ranks['admin'] = 'Admin'
+scoreboard.ranks['vip'] = 'VIP'
+scoreboard.ranks['user'] = 'User'
+function scoreboard:show()
+	scoreboard.base = vgui.Create('DPanel')
+	scoreboard.base:SetSize(ScrW() / 3, ScrH() - 200)
+	--scoreboard.base:SetPos(ScrW() / 2, ScrH() - 100)
+	scoreboard.base:Center()
+	scoreboard.base:MakePopup()
+	function scoreboard.base:Paint(w, h)
+		draw.RoundedBox(3, 0, 0, w, h, Color(236, 240, 241))
+		draw.RoundedBoxEx(3, 0, 0, w, 25, Color(192, 57, 43), true, true, false, false)
+		draw.SimpleText(GetHostName(), 'Trebuchet24', w/2, 25/2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+	end
 
-surface.CreateFont( "ScoreboardFont", {
-	font = "Tehoma",
-	size = 15,
-	weight = 600,
-	antialias = true,
-})
+	scoreboard.scroll = vgui.Create('DScrollPanel', scoreboard.base)
+	scoreboard.scroll:SetSize(scoreboard.base:GetWide(), scoreboard.base:GetTall() - 30)
+	scoreboard.scroll:SetPos(0, 30)
+
+	scoreboard.list = vgui.Create('DListView', scoreboard.scroll)
+	scoreboard.list:SetSize(scoreboard.scroll:GetWide(), scoreboard.scroll:GetTall())
+	scoreboard.list:SetPos(0, 0)
+	scoreboard.list:SetMultiSelect(false)
+	scoreboard.list:AddColumn('Rank')
+	scoreboard.list:AddColumn('Player Name')
+	scoreboard.list:AddColumn('Kills')
+	scoreboard.list:AddColumn('Deaths')
+	scoreboard.list:AddColumn('Money')
+	scoreboard.list:AddColumn('Ping')
+	scoreboard.list:AddColumn('Muted')
+
+	for k, v in pairs(player.GetAll()) do
+		if v:IsMuted() then
+			v.mutedval = 'Yes'
+		else
+			v.mutedval = 'No'
+		end
+		local plyline = scoreboard.list:AddLine(scoreboard.ranks[v:GetUserGroup()], v:GetName(), v:Frags(), v:Deaths(), math.Clamp(v:GetNWInt("Purge_cash"), 0, 9999999999), v:Ping(), v.mutedval)
+		plyline.ply = v
+		function plyline:Paint(w, h)
+			draw.RoundedBox(1, 0, 0, w, h, Color(255, 255, 255))
+		end
+		for k, v in pairs(plyline.Columns) do
+			v:SetTextColor(Color(44, 62, 80))
+		end
+		plyline.Columns[5]:SetTextColor(Color(46, 204, 113))
+		if v:Ping() > 100 then
+			plyline.Columns[6]:SetTextColor(Color(255, 0, 0))
+		end
+	end
+	function scoreboard.list:OnRowRightClick(index, panel)
+		local menu = DermaMenu()
+		local ply = panel.ply
+		menu:AddOption('Toggle Mute On/Off', function()
+			ply:SetMuted(!ply:IsMuted())
+			scoreboard:hide()
+			scoreboard:show()
+		end)
+		menu:AddOption('Open Profile', function()
+			ply:ShowProfile()
+		end)
+		menu:AddOption('Copy Basic Information', function()
+			SetClipboardText('Name: '..ply:GetName()..'\nSteam-ID32: '..ply:SteamID()..'\nSteam-ID64: '..ply:SteamID64()..'\nURL: https://steamcommunity.com/profiles/'..ply:SteamID64())
+		end)
+		menu:Open()
+	end
+
+	for _, v in pairs( scoreboard.list.Columns ) do
+		function v.Header:Paint( w, h )
+			draw.RoundedBox(0, 0, 0, w, h , Color(231, 76, 60))
+		end
+		v.Header:SetTextColor( Color( 255, 255, 255, 255 ) ) -- Set its text alpha with this incase you paint the text manually
+	end
+
+	local tallness = (#scoreboard.list:GetLines()*17) + 16 + 30
+	scoreboard.base:SetTall(tallness)
+end
+
+function scoreboard:hide()
+	scoreboard.base:Remove()
+end
 
 function GM:ScoreboardShow()
-	self.ShowScoreBoard = true
+	scoreboard:show()
 end
 
 function GM:ScoreboardHide()
-	self.ShowScoreBoard = false
-end
-
-function GM:GetTeamScoreInfo()
-	local TeamInfo = {}
-	
-	for _, ply in pairs( player.GetAll() ) do
-		local _team = ply:Team()
-		local _frags = ply:Frags()
-		local _deaths = ply:Deaths()
-		local _ping = ply:Ping()
-		local _cash = ply:GetNWInt("purge_cash")
-		
-		if (not TeamInfo[_team]) then
-			TeamInfo[_team] = {}
-			TeamInfo[_team].TeamName = team.GetName( _team )
-			TeamInfo[_team].Color = team.GetColor( _team )
-			TeamInfo[_team].Players = {}
-		end		
-		
-		local PlayerInfo = {}
-		PlayerInfo.Frags = _frags
-		PlayerInfo.Deaths = _deaths
-		PlayerInfo.Ping = _ping
-		PlayerInfo.Name = ply:Nick()
-		PlayerInfo.PlayerObj = ply
-		PlayerInfo.cash = _cash
-		
-		local insertPos = #TeamInfo[_team].Players + 1
-		for idx, info in pairs(TeamInfo[_team].Players) do
-			if (PlayerInfo.Deaths < info.Deaths) then
-				insertPos = idx
-				break
-			elseif (PlayerInfo.Deaths == info.Deaths) then
-				if (PlayerInfo.Name < info.Name) then
-					insertPos = idx
-					break
-				end
-			end
-		end
-		
-		table.insert(TeamInfo[_team].Players, insertPos, PlayerInfo)
-	end
-	
-	return TeamInfo
-end
-
-function GM:HUDDrawScoreBoard()
-
-	if not self.ShowScoreBoard then return end
-	
-	if self.ScoreDesign == nil then
-		self.ScoreDesign = {}
-		self.ScoreDesign.HeaderY = 0
-		self.ScoreDesign.Height = ScrH() / 2
-	end
-	
-	local alpha = 255
-
-	local ScoreboardInfo = self:GetTeamScoreInfo()
-	
-	local xOffset = x * 0.15
-	local yOffset = 32
-	local scrWidth = x
-	local scrHeight = y - 64
-	local boardWidth = scrWidth - (2 * xOffset)
-	local boardHeight = scrHeight
-	local colWidth = 75
-
-	local ScoreboardFont = "ScoreboardFont"
-	
-	boardWidth = math.Clamp(boardWidth, 400, 600)
-	boardHeight = self.ScoreDesign.Height
-	
-	xOffset = (ScrW() - boardWidth) / 2.0
-	yOffset = (ScrH() - boardHeight) / 2.0
-	yOffset = yOffset - ScrH() / 4.0
-	yOffset = math.Clamp( yOffset, 32, ScrH() )
-
-	-- Background
-	draw.RoundedBox(0, 0, 0, x, y, Color(0, 0, 0, 150))
-	
-	-- Header
-	draw.RoundedBoxEx(6, xOffset, yOffset, boardWidth, self.ScoreDesign.HeaderY, Color(24, 24, 24, 255), true, true, false, false)
-	draw.RoundedBoxEx(6, xOffset, yOffset + 30, boardWidth, self.ScoreDesign.Height - 25, Color(240, 240, 240, 255), false, false, true, true)
-	-- Header text
-	local ySpacing = yOffset + 25
-	draw.SimpleText(GetGlobalString("ServerName"), ScoreboardFont, xOffset + boardWidth * 0.5, ySpacing - 10, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-	
-	ySpacing = ySpacing + 8
-	self.ScoreDesign.HeaderY = ySpacing - yOffset
-	ySpacing = ySpacing + 2
-
-	-- Titles
-	draw.SimpleText("Name", ScoreboardFont, xOffset + 16, ySpacing, color_black)
-	draw.SimpleText("Kills", ScoreboardFont, xOffset + boardWidth - (colWidth*4) + 8, ySpacing, color_black)
-	draw.SimpleText("Cash", ScoreboardFont, xOffset + boardWidth - (colWidth*3) + 8, ySpacing, color_black)
-	draw.SimpleText("Deaths", ScoreboardFont, xOffset + boardWidth - (colWidth*2) + 8, ySpacing, color_black)
-	draw.SimpleText("Ping", ScoreboardFont, xOffset + boardWidth - (colWidth*1) + 8, ySpacing, color_black)
-
-	ySpacing = ySpacing + 26
-
-	local yPosition = ySpacing
-	for team,info in pairs(ScoreboardInfo) do
-		local teamText = info.TeamName .. "  (" .. #info.Players .. " Players)"
-		
-		draw.RoundedBox(0, xOffset + 5, yPosition, boardWidth - 10, 19, Color(info.Color.r, info.Color.g, info.Color.b, 255))
-		
-		yPosition = yPosition + 2
-		
-		draw.SimpleText(teamText, ScoreboardFont, xOffset + boardWidth * 0.5, yPosition + 8, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-
-		yPosition = yPosition + 24
-		
-		for index, plinfo in pairs(info.Players) do
-					
-			if (plinfo.PlayerObj == LocalPlayer()) then
-				draw.RoundedBox(0, xOffset + 10, yPosition, boardWidth - 20, 16, Color(0, 0, 0, 100))
-			end
-						
-			local px = xOffset + 16
-			draw.SimpleText(plinfo.Name, ScoreboardFont, px, yPosition, Color(24, 24, 24, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT)
-            
-			px = xOffset + boardWidth - (colWidth*4) + 8	
-			draw.SimpleText(plinfo.Frags, ScoreboardFont, px, yPosition, Color(0, 100, 0, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT)
-			
-			px = xOffset + boardWidth - (colWidth*3) + 8	
-			draw.SimpleText("$"..plinfo.cash, ScoreboardFont, px, yPosition, Color(0, 100, 0, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT)
-
-			px = xOffset + boardWidth - (colWidth*2) + 8			
-			draw.SimpleText(plinfo.Deaths, ScoreboardFont, px, yPosition, Color(100, 0, 0, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT)
-			
-			px = xOffset + boardWidth - (colWidth*1) + 8			
-			draw.SimpleText(plinfo.Ping, ScoreboardFont, px, yPosition, Color(0, 0, 100, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT)
-			
-			
-			yPosition = yPosition + 20
-		end
-	end
-	self.ScoreDesign.Height = (self.ScoreDesign.Height * 2) + (yPosition-yOffset)
-	self.ScoreDesign.Height = self.ScoreDesign.Height / 3
+	scoreboard:hide()
 end
