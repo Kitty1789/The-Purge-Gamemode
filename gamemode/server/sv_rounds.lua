@@ -23,11 +23,9 @@ function GM:CheckForWinner()
 		if count == 1 and winner != nil then
 			self:DeclareWinner(1, winner)
 			self:SetGameState(4)
-			self:LowerAllWaterControllers()
 		elseif count == 0 and winner == nil then
 			self:DeclareWinner(2, winner)
 			self:SetGameState(4)
-			self:LowerAllWaterControllers()
 		end
 	end
 end
