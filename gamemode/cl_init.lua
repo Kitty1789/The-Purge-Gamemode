@@ -3,15 +3,15 @@ include("shared.lua")
 
 MsgN("_-_-_-_- Purge Client Side -_-_-_-_")
 MsgN("Loading Clientside Files")
-for _, file in pairs(file.Find("purge/gamemode/client/*.lua", "LUA")) do
+for _, file in pairs(file.Find("thepurge/gamemode/client/*.lua", "LUA")) do
 	MsgN("-> "..file)
-	include("purge/gamemode/client/"..file)
+	include("thepurge/gamemode/client/"..file)
 end
 
 MsgN("Loading Clientside VGUI Files")
-for _, file in pairs(file.Find("purge/gamemode/client/vgui/*.lua", "LUA")) do
+for _, file in pairs(file.Find("thepurge/gamemode/client/vgui/*.lua", "LUA")) do
 	MsgN("-> "..file)
-	include("purge/gamemode/client/vgui/"..file)
+	include("thepurge/gamemode/client/vgui/"..file)
 end
 
 function GM:SpawnMenuOpen(ply)
