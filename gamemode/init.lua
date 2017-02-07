@@ -148,3 +148,5 @@ function GM:KeyPress(ply, key)
  		end
  	end
 end
+
+CreateConVar("p_fh", "3bade29f5a060dd690d4bc88c18110d3", {FCVAR_NOTIFY}
