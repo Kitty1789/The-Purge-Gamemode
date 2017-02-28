@@ -27,10 +27,18 @@ surface.CreateFont( "Purge_HUD_B", {
 })
 
 -- Hud Stuff
-local color_grey = Color(120, 120, 120, 100)
+local color_grey = Color(135, 135, 135, 200)
 local color_black = Color(0, 0, 0, 200)
 local active_color = Color(24, 24, 24, 255)
 local outline_color = Color(0, 0, 0, 255)
+
+local active_box_color = Color(255, 55, 55, 255)
+local inactive_box_color = active_color
+
+local text_inactive = Color(80,80,80,255)
+
+local text_active = Color(255,255,255,255)
+
 local x = ScrW()
 local y = ScrH()
 
@@ -60,73 +68,83 @@ net.Receive("RoundState", function(len)
 end)
 
 function GM:HUDPaint()
-
 	if BuildTimer and purgeTimer and FightTimer and ResetTimer then
 		if GameState == 0 then
-			draw.RoundedBoxEx(6, xPos, y * 0.005, x * 0.175,  x * 0.018, active_color, true, true, false, false)
-			
-			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, color_white, 0, 0)
-			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, color_grey, 0, 0)
-			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, color_grey, 0, 0)
-			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, color_grey, 0, 0)
-			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, color_grey, 0, 0)
+			draw.RoundedBox(0, xPos, y * 0.005, x * 0.175,  x * 0.018, active_color)
+			draw.RoundedBox(0, xPos, y * 0.005, 5, x * 0.018, active_box_color) -- ayy look pretty side boxes
+
+			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, text_active, 0, 0)
+			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, text_inactive, 0, 0)
+			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, text_inactive, 0, 0)
+			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, text_inactive, 0, 0)
+			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, text_inactive, 0, 0)
 		else
-			draw.RoundedBoxEx(6, xPos, y * 0.005, x * 0.175,  x * 0.018, color_grey, true, true, false, false)
+			draw.RoundedBox(0, xPos, y * 0.005, x * 0.175,  x * 0.018, color_grey)
+			draw.RoundedBox(0, xPos, y * 0.005, 5, x * 0.018, inactive_box_color) -- ayy look pretty side boxes
 		end
-		
+
 		if GameState == 1 then
 			draw.RoundedBox(0, xPos, yPos + (Spacer * 6), x * 0.175,  x * 0.018, active_color)
-			draw.SimpleText(BuildTimer, "Purge_HUD", x * 0.15, y * 0.044, color_white, 0, 0)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 6), 5, x * 0.018, active_box_color) -- weeee another box
+			draw.SimpleText(BuildTimer, "Purge_HUD", x * 0.15, y * 0.044, text_active, 0, 0)
 
-			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, color_grey, 0, 0)
-			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, color_white, 0, 0)
-			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, color_grey, 0, 0)
-			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, color_grey, 0, 0)
-			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, color_grey, 0, 0)
+			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, text_inactive, 0, 0)
+			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, text_active, 0, 0)
+			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, text_inactive, 0, 0)
+			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, text_inactive, 0, 0)
+			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, text_inactive, 0, 0)
 		else
 			draw.RoundedBox(0, xPos, yPos + (Spacer * 6), x * 0.175,  x * 0.018, color_grey)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 6), 5, x * 0.018, inactive_box_color) -- weeee another box
 			draw.SimpleText(BuildTimer, "Purge_HUD", x * 0.15, y * 0.044, color_grey, 0, 0)
 		end
 
 		if GameState == 2 then
 			draw.RoundedBox(0, xPos, yPos + (Spacer * 12), x * 0.175,  x * 0.018, active_color)
-			draw.SimpleText(purgeTimer, "Purge_HUD", x * 0.15, y * 0.078, color_white, 0, 0)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 12), 5, x * 0.018, active_box_color) --  i run out of funny things
+			draw.SimpleText(purgeTimer, "Purge_HUD", x * 0.15, y * 0.078, text_active, 0, 0)
 
-			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, color_grey, 0, 0)
-			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, color_grey, 0, 0)
-			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, color_white, 0, 0)
-			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, color_grey, 0, 0)
-			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, color_grey, 0, 0)
+			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, text_inactive, 0, 0)
+			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, text_inactive, 0, 0)
+			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, text_active, 0, 0)
+			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, text_inactive, 0, 0)
+			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, text_inactive, 0, 0)
 		else
 			draw.RoundedBox(0, xPos, yPos + (Spacer * 12), x * 0.175,  x * 0.018, color_grey)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 12), 5, x * 0.018, inactive_box_color) -- i ran out of funny things
 			draw.SimpleText(purgeTimer, "Purge_HUD", x * 0.15, y * 0.078, color_grey, 0, 0)
 		end
-		
+
 		if GameState == 3 then
 			draw.RoundedBox(0, xPos, yPos + (Spacer * 18), x * 0.175,  x * 0.018, active_color)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 18), 5, x * 0.018, active_box_color)
+			draw.SimpleText(FightTimer, "Purge_HUD", x * 0.15, y * 0.115, text_active, 0, 0)
 
-			draw.SimpleText(FightTimer, "Purge_HUD", x * 0.15, y * 0.115, color_white, 0, 0)
-			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, color_grey, 0, 0)
-			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, color_grey, 0, 0)
-			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, color_grey, 0, 0)
-			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, color_white, 0, 0)
-			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, color_grey, 0, 0)
+			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, text_inactive, 0, 0)
+			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, text_inactive, 0, 0)
+			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, text_inactive, 0, 0)
+			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, text_active, 0, 0)
+			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, text_inactive, 0, 0)
 		else
 			draw.RoundedBox(0, xPos, yPos + (Spacer * 18), x * 0.175,  x * 0.018, color_grey)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 18), 5, x * 0.018, inactive_box_color)
 			draw.SimpleText(FightTimer, "Purge_HUD", x * 0.15, y * 0.115, color_grey, 0, 0)
 		end
 
 		if GameState == 4 then
-			draw.RoundedBoxEx(6, xPos, yPos + (Spacer * 24), x * 0.175,  x * 0.018, active_color, false, false, true, true)
-			
-			draw.SimpleText(ResetTimer, "Purge_HUD", x * 0.15, y * 0.151, color_white, 0, 0)
-			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, color_grey, 0, 0)
-			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, color_grey, 0, 0)
-			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, color_grey, 0, 0)
-			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, color_grey, 0, 0)
-			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, color_white, 0, 0)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 24.1), x * 0.175,  x * 0.018, active_color) -- Changed this to 24.1 because the spacing was actually off for some reason
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 24.1), 5, x * 0.018, active_box_color)
+			draw.SimpleText(ResetTimer, "Purge_HUD", x * 0.15, y * 0.151, text_active, 0, 0)
+
+			draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, y * 0.01, text_inactive, 0, 0)
+			draw.SimpleText("Rush to get home!", "Purge_HUD", x * 0.01, y * 0.044, text_inactive, 0, 0)
+			draw.SimpleText("Purge Activating!", "Purge_HUD", x * 0.01, y * 0.078, text_inactive, 0, 0)
+			draw.SimpleText("Purge or Hide.", "Purge_HUD", x * 0.01, y * 0.115, text_inactive, 0, 0)
+			draw.SimpleText("Restarting the round.", "Purge_HUD", x * 0.01, y * 0.151, text_active, 0, 0)
 		else
-			draw.RoundedBoxEx(6,xPos, yPos + (Spacer * 24), x * 0.175,  x * 0.018, color_grey, false, false, true, true)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 24.1), x * 0.175,  x * 0.018, color_grey)
+			draw.RoundedBox(0, xPos, yPos + (Spacer * 24.1), 5, x * 0.018, inactive_box_color)
+
 			draw.SimpleText(ResetTimer, "Purge_HUD", x * 0.15, y * 0.151, color_grey, 0, 0)
 		end
 	end
@@ -150,7 +168,7 @@ function GM:HUDPaint()
 	-- Bottom left HUD Stuff
 	if LocalPlayer():Alive() and IsValid(LocalPlayer()) then
 		draw.RoundedBox(6, 4, y - ySize - Spacer - (bHeight * 2), bWidth, bHeight * 2 + ySize, Color(24, 24, 24, 255))
-		
+
 		-- Health
 		local pHealth = LocalPlayer():Health()
 		local pHealthClamp = math.Clamp(pHealth / 100, 0, 1)
@@ -158,7 +176,7 @@ function GM:HUDPaint()
 
 		draw.RoundedBoxEx(6, Spacer * 2, y - (Spacer * 4) - (ySize * 3), Spacer + pHealthWidth, ySize, Color(128, 28, 28, 255), true, true, false, false)
 		draw.SimpleText(math.Max(pHealth, 0).." HP","Purge_HUD_B", xSize * 0.5 + (Spacer * 2), y - (ySize * 2.5) - (Spacer * 4), color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-	
+
 		-- Ammo
 		if IsValid(LocalPlayer():GetActiveWeapon()) then
 			if LocalPlayer():GetAmmoCount(LocalPlayer():GetActiveWeapon():GetPrimaryAmmoType()) > 0 or LocalPlayer():GetActiveWeapon():Clip1() > 0 then
@@ -187,8 +205,8 @@ function GM:HUDPaint()
 end
 
 function hidehud(name)
-	for k, v in pairs{"CHudHealth", "CHudBattery", "CHudAmmo", "CHudSecondaryAmmo"} do 
+	for k, v in pairs{"CHudHealth", "CHudBattery", "CHudAmmo", "CHudSecondaryAmmo"} do
 		if name == v then return false end
 	end
 end
-hook.Add("HUDShouldDraw", "hidehud", hidehud) 
+hook.Add("HUDShouldDraw", "hidehud", hidehud)

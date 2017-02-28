@@ -1,9 +1,10 @@
 scoreboard = scoreboard or {}
 scoreboard.ranks = {}
-scoreboard.ranks['superadmin'] = 'Owner'
-scoreboard.ranks['admin'] = 'Admin'
-scoreboard.ranks['vip'] = 'VIP'
-scoreboard.ranks['user'] = 'User'
+scoreboard.ranks['superadmin'] 	= 'Owner'
+scoreboard.ranks['admin'] 		= 'Admin'
+scoreboard.ranks['moderator'] 	= 'Moderator'
+scoreboard.ranks['vip'] 		= 'VIP'
+scoreboard.ranks['user'] 		= 'User'
 function scoreboard:show()
 	scoreboard.base = vgui.Create('DPanel')
 	scoreboard.base:SetSize(ScrW() / 3, ScrH() - 200)
