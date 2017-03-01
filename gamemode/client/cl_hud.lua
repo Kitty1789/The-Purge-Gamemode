@@ -184,7 +184,7 @@ function GM:HUDPaint()
 				local wBulletClamp = math.Clamp(wBulletCount / 100, 0, 1)
 				local wBulletWidth = (xSize - bWidth) * wBulletClamp
 
-				draw.RoundedBox(0, Spacer * 2, y - (ySize * 2) - (Spacer * 3), bWidth + wBulletWidth, ySize, Color(30, 105, 105, 255))
+				draw.RoundedBox(0, Spacer * 2, y - (ySize * 2) - (Spacer * 3), xSize, ySize, Color(30, 105, 105, 255))
 				draw.SimpleText(wBulletCount.." Bullets", "Purge_HUD_B", xSize * 0.5 + (Spacer * 2), y - ySize - (ySize * 0.5) - (Spacer * 3), color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			else
 				draw.RoundedBox(0, Spacer * 2, y - (ySize * 2) - (Spacer * 3), xSize, ySize, Color(30, 105, 105, 255))
