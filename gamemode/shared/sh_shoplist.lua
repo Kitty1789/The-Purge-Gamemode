@@ -46,7 +46,7 @@ Props[24] = {Model = "models/props_interiors/refrigeratorDoor01a.mdl", Group = 2
 Props[25] = {Model = "models/props_interiors/VendingMachineSoda01a.mdl", Group = 1, Price = 1200, Health = 1600, DonatorOnly = false, Description = "Vending Machine"}
 Props[26] = {Model = "models/props_interiors/VendingMachineSoda01a_door.mdl", Group = 1, Price = 600, Health = 600, DonatorOnly = false, Description = "Vending Machine Door"}
 Props[27] = {Model = "models/props_building_details/Storefront_Template001a_Bars.mdl", Group = 2, Price = 1120, Health = 1100, DonatorOnly = false, Description = "Window Bars"}
-Props[28] = {Model = "models/props_borealis/bluebarrel001.mdl", Group = 1, Price = 50, Health = 25, DonatorOnly = false, Description = "Gravestone"}
+Props[28] = {Model = "models/props_borealis/bluebarrel001.mdl", Group = 1, Price = 50, Health = 25, DonatorOnly = false, Description = "Blue Barrel"}
 Props[29] = {Model = "models/props_wasteland/laundry_dryer001.mdl", Group = 1, Price = 10000, Health = 5000, DonatorOnly = false, Description = "Washer 1"}
 Props[30] = {Model = "models/props_wasteland/laundry_dryer002.mdl", Group = 1, Price = 10000, Health = 5000, DonatorOnly = false, Description = "Washer 2"}
 
@@ -82,7 +82,7 @@ Weapons[43] = {Model = "models/weapons/w_dmg_glock.mdl", Group = 1, Class = "m9k
 Weapons[44] = {Model = "models/weapons/w_uzi_imi.mdl", Group = 3, Class = "m9k_uzi", Name = "UZI", Price = 9500, Ammo = 1000, AmmoClass = "ar2", Damage = 8, DonatorOnly = false}
 Weapons[45] = {Model = "models/weapons/w_tct_famas.mdl", Group = 7, Class = "m9k_famas", Name = "Famas", Price = 275000, Ammo = 1000, AmmoClass = "ar2", Damage = 10, DonatorOnly = true}
 Weapons[46] = {Model = "models/weapons/w_m29_satan.mdl", Group = 1, Class = "m9k_m29satan", Name = "M29Satan", Price = 55000, Ammo = 1000, AmmoClass = "357", Damage = 45, DonatorOnly = false}
-//Weapons[47] = {Model = "models/weapons/w_fc2_machete.mdl", Group = 1, Class = "m9k_machete", Name = "Machete", Price = 50000, Ammo = 1000, AmmoClass = "", Damage = 150, DonatorOnly = false}
+--Weapons[47] = {Model = "models/weapons/w_fc2_machete.mdl", Group = 1, Class = "m9k_machete", Name = "Machete", Price = 50000, Ammo = 1000, AmmoClass = "", Damage = 150, DonatorOnly = false}
 Weapons[49] = {Model = "models/weapons/w_brugger_thomet_mp9.mdl", Group = 3, Class = "m9k_mp9", Name = "mp9", Price = 35000, Ammo = 1000, AmmoClass = "ar2", Damage = 10, DonatorOnly = false}
 Weapons[52] = {Model = "models/weapons/w_mp40smg.mdl", Group = 3, Class = "m9k_mp40", Name = "MP40", Price = 150000, Ammo = 1000, AmmoClass = "ar2", Damage = 47, DonatorOnly = false}
 Weapons[53] = {Model = "models/weapons/w_snip_m24_6.mdl", Group = 5, Class = "m9k_m24", Name = "M24", Price = 300000, Ammo = 1000, AmmoClass = "ar2", Damage = 100, DonatorOnly = false}
@@ -110,7 +110,7 @@ Weapons[73] = {Model = "models/weapons/w_snip_m14sp.mdl", Group = 4, Class = "m9
 Weapons[74] = {Model = "models/weapons/w_auga3.mdl", Group = 4, Class = "m9k_auga3", Name = "AUG A3", Price = 245000, Ammo = 1000, AmmoClass = "ar2", Damage = 35, DonatorOnly = false}
 Weapons[75] = {Model = "models/weapons/w_winchester_1873.mdl", Group = 4, Class = "m9k_winchester73", Name = "Model 1873", Price = 345000, Ammo = 50, AmmoClass = "ar2", Damage = 95, DonatorOnly = false}
 Weapons[76] = {Model = "models/weapons/w_tommy_gun.mdl", Group = 3, Class = "m9k_thompson", Name = "Tompson", Price = 25000, Ammo = 1000, AmmoClass = "ar2", Damage = 36, DonatorOnly = false}
-Weapons[77] = {Model = "models/weapons/w_fn_p90.mdl", Group = 7, Class = "m9k_smgp90", Name = "P90", Price = 105000, Ammo = 1000, AmmoClass = "ar2", Damage = 21, DonatorOnly = True}
+Weapons[77] = {Model = "models/weapons/w_fn_p90.mdl", Group = 7, Class = "m9k_smgp90", Name = "P90", Price = 105000, Ammo = 1000, AmmoClass = "ar2", Damage = 21, DonatorOnly = true}
 Weapons[78] = {Model = "models/weapons/w_fg42.mdl", Group = 3, Class = "m9k_fg42", Name = "FG42", Price = 95000, Ammo = 500, AmmoClass = "ar2", Damage = 38, DonatorOnly = false}
 Weapons[79] = {Model = "models/weapons/w_sb.mdl", Group = 7, Class = "m9k_suicide_bomb", Name = "AshTool C4", Price = 1345000, Ammo = 16, AmmoClass = "C4Explosive", Damage = 30000, DonatorOnly = true}
 Weapons[80] = {Model = "models/weapons/w_spas_12.mdl", Group = 7, Class = "m9k_spas12", Name = "SPAS12", Price = 1525000, Ammo = 16, AmmoClass = "buckshot", Damage = 100, DonatorOnly = true}
