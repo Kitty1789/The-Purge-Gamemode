@@ -288,7 +288,7 @@ function GM:PurchaseProp(ply, cmd, args)
 		end
 	else
 		ct:AddText("[Purge] ", Color(158, 49, 49, 255))
-		ct:AddText("You can not purcahse a(n) "..Prop.Description.." at this time.")
+		ct:AddText("You can not purchase a(n) "..Prop.Description.." at this time.")
 		ct:Send(ply)
 	end
 end
