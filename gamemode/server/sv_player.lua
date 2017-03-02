@@ -25,6 +25,7 @@ function GM:PlayerInitialSpawn(ply)
 			end
 		end)
 	end
+	PrintMessage(HUD_PRINTCENTER, ply:Nick().." has joined the server!")
 	ply.SpawnTime = CurTime()
 end
 
