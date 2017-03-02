@@ -1,7 +1,7 @@
 hook.Add('PlayerInitialSpawn', 'Anti-Proptouch', function(ply)
 	ply:SetTrigger(true)
 	function ply:Touch(ent)
-		if IsValid(ent) and ent:GetClass() == 'prop_physics' and ent:IsFrozen() != true then
+		if IsValid(ent) and ent:GetClass() == 'prop_physics' then
 			ent:Freeze(true)
 		end
 	end
