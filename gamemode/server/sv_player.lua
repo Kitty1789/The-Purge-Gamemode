@@ -26,11 +26,6 @@ function GM:PlayerInitialSpawn(ply)
 		end)
 	end
 	ply.SpawnTime = CurTime()
-	
-	--[[net.Start( "purgeWeaponListTable" ) 
-		net.WriteTable(ply.Weapons)
-	net.Send( ply )
-	PrintTable(ply.Weapons)--]]
 end
 
 net.Receive('plsgiveweaponlistibeengoodgirldaddy', function(len, ply)
@@ -378,7 +373,7 @@ function GM:SellWeapon(ply, cmd, args)
 	if ply.Allow and Weapon and wepIndex > 0 then
 		if table.HasValue(ply.Weapons, Weapon.Class) then
 			-- player owns TIMES TO SELL BBY YE BOIIII
-			local sellPrice = Weapon.Price * 1
+			local sellPrice = Weapon.Price * 0.65
 			
 			ply:AddCash(sellPrice)
 			table.remove(ply.Weapons, wepIndex)
