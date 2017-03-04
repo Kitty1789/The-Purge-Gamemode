@@ -206,11 +206,18 @@ function GM:HUDPaint()
 		draw.SimpleText("Health: " .. tr.Entity:Health(), "Purge_HUD_Small", x * 0.5, y * 0.5 - 60, color_white, 1, 1)
 	end
 
+	function numWithCommas(n)
+	  return tostring(math.floor(n)):reverse():gsub("(%d%d%d)","%1,")
+									:gsub(",(%-?)$","%1"):reverse()
+	end
+	
 	-- Bottom left HUD Stuff
 	if LocalPlayer():Alive() and IsValid(LocalPlayer()) then
-		draw.RoundedBox(0, 4, y - ySize - Spacer - (bHeight * 2.9), bWidth, bHeight * 2.9 + ySize, Color(24, 24, 24, 255))
-
-		-- The Purge / Players alive
+		--draw.RoundedBoxEx( number cornerRadius, number x, number y, number width, number height, table color, boolean roundTopLeft=false, boolean roundTopRight=false, boolean roundBottomLeft=false, boolean roundBottomRight=false )
+		-- Background box
+		draw.RoundedBox(4, 4, ScrH() - 148, 250, 144, Color(24,24,24,255)) 
+		
+		-- The Purge / Players Alive
 		local pText = "The Purge"
 		
 		if (GameState == 3) then
@@ -223,20 +230,19 @@ function GM:HUDPaint()
 		
 			pText = "The Purge - Players Alive: "..pCount
 		end
-
-		draw.RoundedBox(0, Spacer * 1.5, y - (Spacer * 5) - (ySize * 4), xSize, ySize, Color(80, 80, 80, 255))
-		//draw.RoundedBox(0, x, y, w, h, Color(80, 80, 80, 255))
-		
-		draw.SimpleText(pText,"Purge_HUD_B", xSize * 0.5 + (Spacer * 2), y - (Spacer * 5) - (ySize * 3.5), color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		draw.RoundedBoxEx(4, 8, ScrH() - 118, 242, 5, Color(55, 55, 55, 255), false, false, true, true)
+		draw.RoundedBoxEx(4, 8, ScrH() - 143, 242, 27, Color(80, 80, 80, 255), true, true, false, false)
+		draw.SimpleText(pText,"Purge_HUD_B", 130, ScrH()-128, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		
 		-- Health
 		local pHealth = LocalPlayer():Health()
 		local pHealthClamp = math.Clamp(pHealth / 100, 0, 1)
-		local pHealthWidth = (xSize - Spacer) * pHealthClamp
-
-		draw.RoundedBoxEx(0, Spacer * 1.5, y - (Spacer * 4) - (ySize * 3), Spacer + pHealthWidth, ySize, Color(128, 28, 28, 255), true, true, false, false)
-		draw.SimpleText(math.Max(pHealth, 0).." HP","Purge_HUD_B", xSize * 0.5 + (Spacer * 2), y - (ySize * 2.5) - (Spacer * 4), color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-
+		local pHealthWidth = pHealthClamp * 242
+		
+		draw.RoundedBoxEx(4, 8, ScrH() - 84, 242, 5, Color(255, 41, 28, 255), false, false, true, true)
+		draw.RoundedBoxEx(4, 8, ScrH() - 109, pHealthWidth, 27, Color(255, 65, 54, 255), true, true, false ,false)
+		draw.SimpleText(math.Max(pHealth, 0).." HP","Purge_HUD_B", 130, ScrH()-93, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		
 		-- Ammo
 		if IsValid(LocalPlayer():GetActiveWeapon()) then
 			if LocalPlayer():GetAmmoCount(LocalPlayer():GetActiveWeapon():GetPrimaryAmmoType()) > 0 or LocalPlayer():GetActiveWeapon():Clip1() > 0 then
@@ -244,24 +250,30 @@ function GM:HUDPaint()
 				local wBulletClamp = math.Clamp(wBulletCount / 100, 0, 1)
 				local wBulletWidth = (xSize - bWidth) * wBulletClamp
 
-				draw.RoundedBox(0, Spacer * 1.5, y - (ySize * 2) - (Spacer * 3), bWidth + wBulletWidth, ySize, Color(30, 105, 105, 255))
-				draw.SimpleText(wBulletCount.." Bullets", "Purge_HUD_B", xSize * 0.5 + (Spacer * 2), y - ySize - (ySize * 0.5) - (Spacer * 3), color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				draw.RoundedBoxEx(4, 8, ScrH() - 49, 242, 5, Color(15, 100, 133, 255), false, false, true, true)
+				draw.RoundedBoxEx(4, 8, ScrH() - 74, 242, 27,Color(21, 140, 186, 255), true, true, false, false)
+				draw.SimpleText(numWithCommas(wBulletCount).." Bullets", "Purge_HUD_B", 130, ScrH()-59, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			else
-				draw.RoundedBox(0, Spacer * 1.5, y - (ySize * 2) - (Spacer * 3), xSize, ySize, Color(30, 105, 105, 255))
-				draw.SimpleText("Doesn't Use Ammo", "Purge_HUD_B", xSize * 0.5 + (Spacer * 2), y - ySize - (ySize * 0.5) - (Spacer * 3), color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				draw.RoundedBoxEx(4, 8, ScrH() - 49, 242, 5, Color(15, 100, 133, 255), false, false, true, true)
+				draw.RoundedBoxEx(4, 8, ScrH() - 74, 242, 27,Color(21, 140, 186, 255), true, true, false, false)
+				draw.SimpleText("Doesn't Use Ammo", "Purge_HUD_B", 130, ScrH()-59, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			end
 		else
-			draw.RoundedBox(0, Spacer * 1.5, y - (ySize * 2) - (Spacer * 3), xSize, ySize, Color(30, 105, 105, 255))
-			draw.SimpleText("No Ammo", "Purge_HUD_B", xSize * 0.5 + (Spacer * 2), y - ySize - (ySize * 0.5) - (Spacer * 3), color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			draw.RoundedBoxEx(4, 8, ScrH() - 49, 242, 5, Color(15, 100, 133, 255), false, false, true, true)
+			draw.RoundedBoxEx(4, 8, ScrH() - 74, 242, 27,Color(21, 140, 186, 255), true, true, false, false)
+			draw.SimpleText("No Ammo", "Purge_HUD_B", 130, ScrH()-59, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		end
-
-		-- Cash
+		
+		
+		-- Moany ;)
 		local pCash = LocalPlayer():GetNWInt("Purge_cash") or 0
-		local pCashClamp = math.Clamp(pCash / 5000, 0, xSize)
+		local pCashClamp = math.Clamp(pCash / 5000, 0, 99999999)
 
-		draw.RoundedBoxEx(0, Spacer * 1.5, y - ySize - (Spacer * 2), xSize, ySize, Color(63, 140, 64, 255), false, false, true, true)
-		draw.SimpleText("$"..pCash, "Purge_HUD_B", (xSize * 0.5) + (Spacer * 2), y - (ySize * 0.5) - (Spacer * 2), WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		draw.RoundedBoxEx(4, 8, ScrH() - 14, 242, 5, Color(30, 138, 34, 255), false, false, true, true)
+		draw.RoundedBoxEx(4, 8, ScrH() - 39, 242, 27,Color(40, 182, 44,255), true, true, false, false)
+		draw.SimpleText("$"..numWithCommas(pCash), "Purge_HUD_B", 130, ScrH() - 25, WHITE, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 	end
+
 end
 
 function hidehud(name)
