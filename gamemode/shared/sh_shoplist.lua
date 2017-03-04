@@ -73,7 +73,7 @@ Weapons[28] = {Model = "models/weapons/w_mossberg_590.mdl", Group = 4, Class = "
 Weapons[30] = {Model = "models/weapons/w_c4.mdl", Group = 7, Class = "bb_css_c4", Name = "C4", Price = 355000, Ammo = 1000, AmmoClass = "cssc4", Damage = 100, DonatorOnly = true}
 Weapons[31] = {Model = "models/weapons/w_barret_m82.mdl", Group = 7, Class = "m9k_barret_m82", Name = "Barret", Price = 100000, Ammo = 1000, AmmoClass = "", Damage = 95, DonatorOnly = true}
 Weapons[32] = {Model = "models/weapons/w_kriss_vector.mdl", Group = 7, Class = "m9k_vector", Name = "Vector", Price = 65000, Ammo = 1000, AmmoClass = "smg1", Damage = 19, DonatorOnly = true}
-Weapons[33] = {Model = "models/weapons/s_dmgf_co1911.mdl", Group = 1, Class = "m9k_colt1911", Name = "M1911", Price = 15000, Ammo = 1000, AmmoClass = "pistol", Damage = 27, DonatorOnly = true}
+Weapons[33] = {Model = "models/weapons/s_dmgf_co1911.mdl", Group = 7, Class = "m9k_colt1911", Name = "M1911", Price = 15000, Ammo = 1000, AmmoClass = "pistol", Damage = 27, DonatorOnly = true}
 Weapons[38] = {Model = "models/weapons/w_mp7_silenced.mdl", Group = 3, Class = "m9k_mp7", Name = "Mp7", Price = 30000, Ammo = 1000, AmmoClass = "ar2", Damage = 11, DonatorOnly = false}
 Weapons[39] = {Model = "models/weapons/w_mach_russ_pkm.mdl", Group = 3, Class = "m9k_pkm", Name = "PKM", Price = 135000, Ammo = 1000, AmmoClass = "ar2", Damage = 38, DonatorOnly = false}
 Weapons[41] = {Model = "models/weapons/w_rif_an_94.mdl", Group = 4, Class = "m9k_an94", Name = "AN94", Price = 475000, Ammo = 1000, AmmoClass = "ar2", Damage = 30, DonatorOnly = false}
