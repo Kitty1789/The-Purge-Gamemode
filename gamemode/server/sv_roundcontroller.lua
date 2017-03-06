@@ -77,11 +77,7 @@ function GM:CheckPhase()
 		-- Respawn all the players
 		for _, v in pairs(player.GetAll()) do
 			if IsValid(v) then
-				If v:Alive() then
-					v:KillSilent()
-				else
-					v:Spawn()
-				end
+				v:Spawn()
 			end
 		end
 	end
