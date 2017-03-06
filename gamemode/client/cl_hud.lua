@@ -239,7 +239,7 @@ function GM:HUDPaint()
 		local pHealthClamp = math.Clamp(pHealth / 100, 0, 1)
 		local pHealthWidth = pHealthClamp * 242
 		
-		draw.RoundedBoxEx(4, 8, ScrH() - 84, 242, 5, Color(255, 41, 28, 255), false, false, true, true)
+		draw.RoundedBoxEx(4, 8, ScrH() - 84, pHealthWidth, 5, Color(255, 41, 28, 255), false, false, true, true)
 		draw.RoundedBoxEx(4, 8, ScrH() - 109, pHealthWidth, 27, Color(255, 65, 54, 255), true, true, false ,false)
 		draw.SimpleText(math.Max(pHealth, 0).." HP","Purge_HUD_B", 130, ScrH()-93, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		
