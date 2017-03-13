@@ -1,3 +1,73 @@
+function numWithCommas(n)
+  return tostring(math.floor(n)):reverse():gsub("(%d%d%d)","%1,")
+								:gsub(",(%-?)$","%1"):reverse()
+end
+--Pay player
+local function Purge_Pay(ply, txt)
+	local command = string.Explode(" ", txt)
+	if command[1] == "!pay" then
+		local ct = ChatText()
+		local ct2 = ChatText()
+		local ct3 = ChatText()
+		local ct4 = ChatText()
+		local ct5 = ChatText()
+		--sooo many chattexts lol
+
+		local commandname = command[1]
+		
+		--Combine all the command arguments (Normally wouldn't work with players with spaces, so this is the fix)
+		local playerStr = ""
+		for i=2,#command-1,1 do
+			if i == 2 then
+				playerStr = command[i]
+			else
+				playerStr = playerStr .. " " .. command[i]
+			end
+		end
+		
+		local pay_player = FindPlayer(ply, playerStr)
+		local pay_amount = command[#command] -- Get the last value in the array (the amount to send)
+		
+		
+		if CheckInput(ply, pay_amount, commandname) then
+		pay_amount = math.floor(pay_amount) --pay amount is valid, so round it down, so no decimals
+			if IsValid(pay_player) and (ply != pay_player) then
+				if (pay_amount != 0) then
+					if ply:GetCash() < tonumber(pay_amount) then
+					--Player does not have enough cash to send this amount.
+						ct2:AddText("[Purge] ", Color(158, 49, 49, 255))
+						ct2:AddText("You do not have enough money to send that amount.")
+						ct2:Send(ply)
+					else
+					--Player has enough & is valid
+						ct3:AddText("[Purge] ", Color(132, 199, 29, 255))
+						ct3:AddText("You have given $" .. numWithCommas(pay_amount) .. " to " .. pay_player:Nick() .. "!")
+						ct3:Send(ply)
+						
+						ply:SubCash(pay_amount) --Take cash from sending player
+						pay_player:AddCash(pay_amount) --Give cash to recieving player
+						
+						ct4:AddText("[Purge] ", Color(132, 199, 29, 255))
+						ct4:AddText("You have received $".. numWithCommas(pay_amount) .." from " .. ply:Nick() .. "!")
+						ct4:Send(pay_player)
+						
+					end
+				else
+					ct5:AddText("[Purge] ", Color(158, 49, 49, 255))
+					ct5:AddText("Value must be above 0.")
+					ct5:Send(ply)
+				end
+			else
+				ct:AddText("[Purge] ", Color(158, 49, 49, 255))
+				ct:AddText("Target player could not be found.")
+				ct:Send(ply)
+			end
+		end
+
+	end
+end
+hook.Add("PlayerSay", "Purge_Pay", Purge_Pay)
+
 -- Give Cash
 local function Purge_GiveCash(ply, txt)
 	local command = string.Explode(" ", txt)
