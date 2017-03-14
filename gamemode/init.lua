@@ -86,6 +86,12 @@ function GM:EntityTakeDamage(ent, dmginfo)
 	if GAMEMODE:GetGameState() ~= 2 and GAMEMODE:GetGameState() ~= 3 then
 		return false
 	else
+		
+		if ent:GetClass() == "func_button" or ent:GetClass() == "func_door" then
+		--This should quit people bitching about the buttons to rooms being broken on purpose
+			return false
+		end
+		
 		if not ent:IsPlayer() then
 			if attacker:IsPlayer() then
 				if attacker:GetActiveWeapon() ~= NULL then
