@@ -140,7 +140,7 @@ function GM:HUDPaint()
 			boxGS4 = gsActivebox
 		end
 		
-		local nY = 25
+		local nY = 4
 		local itemHeight = 25
 		local spacingPerItem = 3
 
@@ -155,7 +155,7 @@ function GM:HUDPaint()
 		nY = nY + spacingPerItem + itemHeight
 		draw.RoundedBox(0, xPos, nY, x * 0.175, itemHeight, boxGS4)
 		
-		nY = 25 -- reset nY
+		nY = 4 -- reset nY
 		-- Side box thingies
 		draw.RoundedBox(0, xPos, nY, 5, itemHeight, sideboxGS0)
 		nY = nY + spacingPerItem + itemHeight
@@ -167,7 +167,7 @@ function GM:HUDPaint()
 		nY = nY + spacingPerItem + itemHeight
 		draw.RoundedBox(0, xPos, nY, 5, itemHeight, sideboxGS4)
 		
-		nY = 30 -- reset nY
+		nY = 9 -- reset nY
 		-- Text & Timers
 		draw.SimpleText("Waiting for players.", "Purge_HUD", x * 0.01, nY, gs0color, 0, 0)
 		nY = nY + spacingPerItem + itemHeight
