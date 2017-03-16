@@ -322,6 +322,10 @@ function GM:PurchaseWeapon(ply, cmd, args)
 					ct:AddText("[Purge] ", Color(132, 199, 29, 255))
 					ct:AddText("You have purchased a(n) "..Weapon.Name..".")
 					ct:Send(ply)
+					
+					net.Start('purgeWeaponListUpdate')
+						net.WriteTable(Weapon) --We do this so when the user purchases a gun, then it automatically adds to the sell weapons; flawlessly
+					net.Send(ply)
 				else
 					ct:AddText("[Purge] ", Color(158, 49, 49, 255))
 					ct:AddText("You do not have enough cash to purchase a(n) "..Weapon.Name..".")
@@ -331,8 +335,53 @@ function GM:PurchaseWeapon(ply, cmd, args)
 		end
 	else
 		ct:AddText("[Purge] ", Color(158, 49, 49, 255))
-		ct:AddText("You can not purcahse a(n) "..Weapon.Name.." at this time.")
+		ct:AddText("You can not purchase a(n) "..Weapon.Name.." at this time.")
 		ct:Send(ply)
 	end
 end
 concommand.Add("PurgePurchaseWeapon", function(ply, cmd, args) hook.Call("PurchaseWeapon", GAMEMODE, ply, cmd, args) end)
+
+
+function GM:SellWeapon(ply, cmd, args)
+	if not ply.PropSpawnDelay then ply.PropSpawnDelay = 0 end
+	if not IsValid(ply) or not args[1] then return end
+
+	local Weapon = Weapons[math.floor(args[1])]
+	local ct = ChatText()
+
+	local wepIndex
+	if Weapon then
+		for k,v in pairs(ply.Weapons) do
+			if (v == Weapon.Class) then
+				-- we has located ze weapon
+				wepIndex = k
+			end
+		end
+	end
+	
+	if ply.Allow and Weapon and wepIndex > 0 then
+		if table.HasValue(ply.Weapons, Weapon.Class) then
+			-- player owns TIMES TO SELL BBY YE BOIIII
+			local sellPrice = Weapon.Price * 0.65
+			
+			ply:AddCash(sellPrice)
+			table.remove(ply.Weapons, wepIndex)
+			ply:Save()
+			
+			ct:AddText("[Purge] ", Color(132, 199, 29, 255))
+			ct:AddText("You have sold your "..Weapon.Name.." for $"..sellPrice..".")
+			ct:Send(ply)
+			return
+		else
+			-- fuckers try'na sell what he dont got? nah mate.
+			ct:AddText("[Purge] ", Color(158, 49, 49, 255))
+			ct:AddText("You don't own a(n) "..Weapon.Name.." to sell.")
+			ct:Send(ply)
+		end
+	else
+		ct:AddText("[Purge] ", Color(158, 49, 49, 255))
+		ct:AddText("Unable to sell "..Weapon.Name..". Please contact administrator.")
+		ct:Send(ply)
+	end
+end
+concommand.Add("PurgeSellWeapon", function(ply, cmd, args) hook.Call("SellWeapon", GAMEMODE, ply, cmd, args) end)
