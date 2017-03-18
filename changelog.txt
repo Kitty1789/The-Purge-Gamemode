@@ -1,0 +1,10 @@
+---- Purge Changelog ----
+
+17th March 2017 - Added this help menu ~B
+
+16th March 2017 - Changed SimpleXP HUD to match the main HUD,
+also fixed certain world entities from being destroyed (secret room buttons) ~B
+
+13th March 2017 - Added !pay command; Usage !pay <player> <amount> ~B
+
+12th March 2017 - Fixed bug where users would get kill reward if they suicided ~B

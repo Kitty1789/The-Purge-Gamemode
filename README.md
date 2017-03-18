@@ -35,5 +35,5 @@ SOFTWARE.
 Note, the MIT license does NOT apply on the Purge gamemode, it applies on the flood gamemode, and purge is a new gamemode, BASED on the flood.
 
 ### Copyright holders
-- WTC - GhostCommunity
-- TangoWorldWide
+- [WTC - GhostCommunity](https://wtcghostcommunity.com)
+- [TangoWorldWide](https://tangoworldwide.net/)
