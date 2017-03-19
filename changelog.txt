@@ -1,6 +1,7 @@
 ---- Purge Changelog ----
 
-19th March 2017 - Balanced some props' values and added some ~B
+19th March 2017 - Balanced some props' values and added some,
+also fixed issue with using pay command without a user sending to a random ~B
 
 17th March 2017 - Added this help menu ~B
 
