@@ -36,4 +36,4 @@ Note, the MIT license does NOT apply on the Purge gamemode, it applies on the fl
 
 ### Copyright holders
 - [WTC - GhostCommunity](https://wtcghostcommunity.com)
-- [TangoWorldWide](https://tangoworldwide.net/)
+- [TangoWorldWide (Balon)](https://tangoworldwide.net/)
