@@ -44,6 +44,8 @@ local y = ScrH()
 
 -- Timer Stuff
 local GameState = 0
+local StateTimer = -1
+
 local BuildTimer = -1
 local purgeTimer = -1
 local FightTimer = -1
@@ -73,18 +75,27 @@ local gs0color,gs1color,gs2color,gs3color,gs4color = gsInactive
 local sideboxGS0,sideboxGS1,sideboxGS2,sideboxGS3,sideboxGS4 = sideboxGSInactive
 local boxGS0,boxGS1,boxGS2,boxGS3,boxGS4 = gsInactiveBox
 
+
+	
 net.Receive("RoundState", function(len)
 	GameState = net.ReadFloat()
-	BuildTimer = net.ReadFloat()
-	purgeTimer = net.ReadFloat()
-	FightTimer = net.ReadFloat()
-	ResetTimer = net.ReadFloat()
+	StateTimer = net.ReadFloat()
 end)
 
-function GM:HUDPaint()
-	if BuildTimer and purgeTimer and FightTimer and ResetTimer then
 
+
+
+function GM:HUDPaint()
+	--if GameState and purgeTimer and FightTimer and ResetTimer then
+	if StateTimer then
+			
+			
 		if GameState == 0 then
+			BuildTimer = GetGlobalFloat("purgeBuildTime")
+			purgeTimer = GetGlobalFloat("purgePurgeTime")
+			FightTimer = GetGlobalFloat("purgeFightTime")
+			ResetTimer = GetGlobalFloat("purgeResetTime")
+			
 			--Waiting for players
 			gs0color = gsActive
 			gs1color,gs2color,gs3color,gs4color = gsInactive,gsInactive,gsInactive,gsInactive
@@ -96,6 +107,8 @@ function GM:HUDPaint()
 			boxGS1,boxGS2,boxGS3,boxGS4 = gsInactiveBox,gsInactiveBox,gsInactiveBox,gsInactiveBox
 		end
 		if GameState == 1 then
+			BuildTimer = StateTimer
+
 			--Rush to get home
 			gs0color,gs2color,gs3color,gs4color = gsInactive,gsInactive,gsInactive,gsInactive
 			gs1color = gsActive
@@ -107,6 +120,8 @@ function GM:HUDPaint()
 			boxGS1 = gsActivebox
 		end
 		if GameState == 2 then
+			purgeTimer = StateTimer
+		
 			--Purge activating
 			gs0color,gs1color,gs3color,gs4color = gsInactive,gsInactive,gsInactive,gsInactive
 			gs2color = gsActive
@@ -118,6 +133,8 @@ function GM:HUDPaint()
 			boxGS2 = gsActivebox
 		end
 		if GameState == 3 then
+			FightTimer = StateTimer
+		
 			--Purge or hide
 			gs0color,gs1color,gs2color,gs4color = gsInactive,gsInactive,gsInactive,gsInactive
 			gs3color = gsActive
@@ -129,6 +146,8 @@ function GM:HUDPaint()
 			boxGS3 = gsActivebox
 		end
 		if GameState == 4 then
+			ResetTimer = StateTimer
+		
 			--Reset
 			gs0color,gs1color,gs2color,gs3color = gsInactive,gsInactive,gsInactive,gsInactive
 			gs4color = gsActive
@@ -192,7 +211,7 @@ function GM:HUDPaint()
 
 	-- Display Prop's Health
 	local tr = util.TraceLine(util.GetPlayerTrace(LocalPlayer()))
-	if tr.Entity:IsValid() and not tr.Entity:IsPlayer() then
+	if tr.Entity:IsValid() and not tr.Entity:IsPlayer() then		
 		if tr.Entity:GetNWInt("CurrentPropHealth") == "" or tr.Entity:GetNWInt("CurrentPropHealth") == nil or tr.Entity:GetNWInt("CurrentPropHealth") == NULL then
 			draw.SimpleText("Fetching Health", "Purge_HUD_Small", x * 0.5, y * 0.5 - 25, color_white, 1, 1)
 		else
