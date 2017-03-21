@@ -27,6 +27,12 @@ function GM:PlayerInitialSpawn(ply)
 	PrintMessage(HUD_PRINTCENTER, ply:Nick().." has joined the server!")
 end
 
+net.Receive('plsgiveweaponlistibeengoodgirldaddy', function(len, ply)
+	net.Start('purgeWeaponListTable')
+	net.WriteTable(ply.Weapons)
+	net.Send(ply)
+end)
+
 function GM:PlayerSpawn( ply )
 	hook.Call( "PlayerLoadout", GAMEMODE, ply )
 	hook.Call( "PlayerSetModel", GAMEMODE, ply )
