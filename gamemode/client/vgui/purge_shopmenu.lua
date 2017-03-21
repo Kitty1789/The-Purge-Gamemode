@@ -59,7 +59,8 @@ function PANEL:Init()
 	
 	self.LeftContentPanel:AddSheet("Props", vgui.Create("purge_ShopMenu_Props", self.LeftFrame), "icon16/house.png")
 	self.LeftContentPanel:AddSheet("Weapons", vgui.Create("purge_ShopMenu_Weapons", self.LeftFrame), "icon16/gun.png")
-
+	self.LeftContentPanel:AddSheet("Sell Weapons", vgui.Create("purge_ShopMenu_SellWeapons", self.LeftFrame), "icon16/gun.png")	
+	
 	self.RightContentPanel = vgui.Create("DPropertySheet", self.RightFrame)
 	self.RightContentPanel:SetPos(0, 25)
 	self.RightContentPanel:SetSize(self.RightFrame:GetWide(), self.RightFrame:GetTall() - 25)
