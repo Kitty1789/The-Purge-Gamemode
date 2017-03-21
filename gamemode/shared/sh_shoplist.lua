@@ -4,8 +4,9 @@ WeaponCategories = {}
 Weapons = {}
 
 -- Prop categories
-PropCategories[1] = "Bouyant Props"
+PropCategories[1] = "Weak Props"
 PropCategories[2] = "Armor Props"
+PropCategories[3] = "Misc. Props"
 
 -- Weapon categories
 WeaponCategories[1] = "Pistol/Melee Weapons"
@@ -15,40 +16,52 @@ WeaponCategories[4] = "Assault Weapons"
 WeaponCategories[5] = "Sniper/Crossbow Weapons"
 WeaponCategories[6] = "Grenades"
 WeaponCategories[7] = "Donors Loot"
-WeaponCategories[9] = " PURGE Weapons Update"
+WeaponCategories[9] = "PURGE Weapons Update"
 
 
 -- Props
-Props[1] = {Model = "models/props_c17/FurnitureTable002a.mdl", Group = 1, Price = 350, Health = 350, DonatorOnly = false, Description = "Wooden Table"}
-Props[2] = {Model = "models/props_c17/gravestone003a.mdl", Group = 2, Price = 160, Health = 100, DonatorOnly = false, Description = "Gravestone"}
-Props[3] = {Model = "models/props_c17/oildrum001.mdl", Group = 2, Price = 60, Health = 50, DonatorOnly = false, Description = "Oil Drum"}
-Props[4] = {Model = "models/props_c17/concrete_barrier001a.mdl", Group = 2, Price = 100, Health = 115, DonatorOnly = false, Description = "Concrete Barrier"}
-Props[5] = {Model = "models/props_c17/gravestone_coffinpiece002a.mdl", Group = 2, Price = 800, Health = 800, DonatorOnly = false, Description = "Coffin Piece"}
-Props[6] = {Model = "models/props_c17/display_cooler01a.mdl", Group = 2, Price = 2600, Health = 2000, DonatorOnly = false, Description = "Display Case"}
-Props[7] = {Model = "models/props_c17/bench01a.mdl", Group = 1, Price = 40, Health = 200, DonatorOnly = false, Description = "Wooden Bench"}
-Props[8] = {Model = "models/props_c17/FurnitureCouch001a.mdl", Group = 2, Price = 400, Health = 400, DonatorOnly = false, Description = "Red Couch"}
-Props[9] = {Model = "models/props_lab/blastdoor001a.mdl", Group = 1, Price = 250, Health = 250, DonatorOnly = false, Description = "Blast Door"}
-Props[10] = {Model = "models/props_c17/shelfunit01a.mdl", Group = 1, Price = 180, Health = 190, DonatorOnly = false, Description = "Wooden Shelf 1"}
-Props[11] = {Model = "models/props_c17/FurnitureShelf001a.mdl", Group = 1, Price = 200, Health = 100, DonatorOnly = false, Description = "Wooden Shelf 2"}
-Props[12] = {Model = "models/props_interiors/Furniture_shelf01a.mdl", Group = 1, Price = 450, Health = 450, DonatorOnly = false, Description = "Wooden Shelf 3"}
-Props[13] = {Model = "models/props_c17/Lockers001a.mdl", Group = 2, Price = 700, Health = 750, DonatorOnly = false, Description = "Metal Locker"}
-Props[14] = {Model = "models/props_debris/metal_panel02a.mdl", Group = 2, Price = 500, Health = 500, DonatorOnly = false, Description = "Metal Panel 1"}
-Props[15] = {Model = "models/props_debris/metal_panel01a.mdl", Group = 2, Price = 1000, Health = 1000, DonatorOnly = false, Description = "Metal Panel 2"}
-Props[16] = {Model = "models/props_junk/wood_crate001a.mdl", Group = 2, Price = 750, Health = 750, DonatorOnly = false, Description = "Wood Crate"}
-Props[17] = {Model = "models/props_c17/canister_propane01a.mdl", Group = 2, Price = 500, Health = 500, DonatorOnly = false, Description = "Gas Canister"}
-Props[18] = {Model = "models/props_doors/door03_slotted_left.mdl", Group = 1, Price = 1250, Health = 1250, DonatorOnly = false, Description = "Door"}
-Props[19] = {Model = "models/props_borealis/borealis_door001a.mdl", Group = 1, Price = 400, Health = 550, DonatorOnly = false, Description = "Borealis Door"}
-Props[20] = {Model = "models/props_wasteland/kitchen_fridge001a.mdl", Group = 1, Price = 900, Health = 1000, DonatorOnly = false, Description = "Fridge"}
-Props[21] = {Model = "models/props_interiors/BathTub01a.mdl", Group = 2, Price = 800, Health = 800, DonatorOnly = false, Description = "Bathtub"}
-Props[22] = {Model = "models/props_interiors/Furniture_Desk01a.mdl", Group = 1, Price = 760, Health = 800, DonatorOnly = false, Description = "Wooden Desk"}
-Props[23] = {Model = "models/props_interiors/refrigerator01a.mdl", Group = 2, Price = 3000, Health = 3000, DonatorOnly = false, Description = "Refrigerator"}
-Props[24] = {Model = "models/props_interiors/refrigeratorDoor01a.mdl", Group = 2, Price = 300, Health = 300, DonatorOnly = false, Description = "Refrigerator Door"}
-Props[25] = {Model = "models/props_interiors/VendingMachineSoda01a.mdl", Group = 1, Price = 1200, Health = 1600, DonatorOnly = false, Description = "Vending Machine"}
-Props[26] = {Model = "models/props_interiors/VendingMachineSoda01a_door.mdl", Group = 1, Price = 600, Health = 600, DonatorOnly = false, Description = "Vending Machine Door"}
-Props[27] = {Model = "models/props_building_details/Storefront_Template001a_Bars.mdl", Group = 2, Price = 1120, Health = 1100, DonatorOnly = false, Description = "Window Bars"}
-Props[28] = {Model = "models/props_borealis/bluebarrel001.mdl", Group = 1, Price = 50, Health = 25, DonatorOnly = false, Description = "Blue Barrel"}
-Props[29] = {Model = "models/props_wasteland/laundry_dryer001.mdl", Group = 1, Price = 10000, Health = 5000, DonatorOnly = false, Description = "Washer 1"}
-Props[30] = {Model = "models/props_wasteland/laundry_dryer002.mdl", Group = 1, Price = 10000, Health = 5000, DonatorOnly = false, Description = "Washer 2"}
+--- Weak Props
+Props[1] = {Model = "models/props_c17/FurnitureTable002a.mdl", Group = 1, Price = 350, Health = 150, DonatorOnly = false, Description = "Wooden Table"}
+Props[2] = {Model = "models/props_c17/gravestone003a.mdl", Group = 1, Price = 160, Health = 75, DonatorOnly = false, Description = "Gravestone (Small)"}
+Props[3] = {Model = "models/props_c17/oildrum001.mdl", Group = 1, Price = 60, Health = 50, DonatorOnly = false, Description = "Oil Drum"}
+Props[4] = {Model = "models/props_c17/bench01a.mdl", Group = 1, Price = 40, Health = 200, DonatorOnly = false, Description = "Wooden Bench"}
+Props[5] = {Model = "models/props_c17/shelfunit01a.mdl", Group = 1, Price = 180, Health = 190, DonatorOnly = false, Description = "Wooden Shelf 1"}
+Props[6] = {Model = "models/props_c17/FurnitureShelf001a.mdl", Group = 1, Price = 200, Health = 100, DonatorOnly = false, Description = "Wooden Shelf 2"}
+Props[7] = {Model = "models/props_interiors/Furniture_shelf01a.mdl", Group = 1, Price = 450, Health = 450, DonatorOnly = false, Description = "Wooden Shelf 3"}
+Props[8] = {Model = "models/props_junk/wood_crate001a.mdl", Group = 1, Price = 750, Health = 750, DonatorOnly = false, Description = "Wood Crate"}
+Props[9] = {Model = "models/props_interiors/Furniture_Desk01a.mdl", Group = 1, Price = 760, Health = 800, DonatorOnly = false, Description = "Wooden Desk"}
+Props[10] = {Model = "models/props_borealis/bluebarrel001.mdl", Group = 1, Price = 50, Health = 25, DonatorOnly = false, Description = "Blue Barrel"}
+Props[11] = {Model = "models/props_interiors/Furniture_Lamp01a.mdl", Group = 1, Price = 100, Health = 75, DonatorOnly = false, Description = "Lamp"}
+Props[12] = {Model = "models/props_wasteland/prison_bedframe001b.mdl", Group = 1, Price = 200, Health = 100, DonatorOnly = false, Description = "Prison Bed Frame"}
+
+--- Armor Props
+Props[13] = {Model = "models/props_c17/concrete_barrier001a.mdl", Group = 2, Price = 150, Health = 250, DonatorOnly = false, Description = "Concrete Barrier"}
+Props[14] = {Model = "models/props_c17/gravestone_coffinpiece002a.mdl", Group = 2, Price = 800, Health = 800, DonatorOnly = false, Description = "Coffin Piece"}
+Props[15] = {Model = "models/props_c17/display_cooler01a.mdl", Group = 2, Price = 2600, Health = 2000, DonatorOnly = false, Description = "Display Case"}
+Props[16] = {Model = "models/props_lab/blastdoor001a.mdl", Group = 2, Price = 250, Health = 250, DonatorOnly = false, Description = "Blast Door"}
+Props[17] = {Model = "models/props_c17/Lockers001a.mdl", Group = 2, Price = 700, Health = 750, DonatorOnly = false, Description = "Metal Locker"}
+Props[18] = {Model = "models/props_debris/metal_panel02a.mdl", Group = 2, Price = 500, Health = 500, DonatorOnly = false, Description = "Metal Panel 1"}
+Props[19] = {Model = "models/props_debris/metal_panel01a.mdl", Group = 2, Price = 1000, Health = 1000, DonatorOnly = false, Description = "Metal Panel 2"}
+Props[20] = {Model = "models/props_c17/canister_propane01a.mdl", Group = 2, Price = 500, Health = 500, DonatorOnly = false, Description = "Gas Canister"}
+Props[21] = {Model = "models/props_doors/door03_slotted_left.mdl", Group = 2, Price = 1250, Health = 1250, DonatorOnly = false, Description = "Door"}
+Props[22] = {Model = "models/props_borealis/borealis_door001a.mdl", Group = 2, Price = 400, Health = 550, DonatorOnly = false, Description = "Borealis Door"}
+Props[23] = {Model = "models/props_wasteland/kitchen_fridge001a.mdl", Group = 2, Price = 1250, Health = 1000, DonatorOnly = false, Description = "Fridge"}
+Props[24] = {Model = "models/props_building_details/Storefront_Template001a_Bars.mdl", Group = 2, Price = 1120, Health = 1100, DonatorOnly = false, Description = "Window Bars"}
+Props[25] = {Model = "models/props_interiors/VendingMachineSoda01a.mdl", Group = 2, Price = 1200, Health = 1600, DonatorOnly = false, Description = "Vending Machine"}
+Props[26] = {Model = "models/props_interiors/VendingMachineSoda01a_door.mdl", Group = 2, Price = 600, Health = 600, DonatorOnly = false, Description = "Vending Machine Door"}
+
+--- Misc Props
+Props[27] = {Model = "models/props_c17/FurnitureCouch001a.mdl", Group = 3, Price = 400, Health = 400, DonatorOnly = false, Description = "Red Couch"}
+Props[28] = {Model = "models/props_interiors/BathTub01a.mdl", Group = 3, Price = 800, Health = 800, DonatorOnly = false, Description = "Bathtub"}
+Props[29] = {Model = "models/props_c17/FurnitureFridge001a.mdl", Group = 3, Price = 3000, Health = 3000, DonatorOnly = false, Description = "Refrigerator"}
+Props[30] = {Model = "models/props_interiors/refrigeratorDoor01a.mdl", Group = 3, Price = 300, Health = 300, DonatorOnly = false, Description = "Refrigerator Door"}
+Props[31] = {Model = "models/props_wasteland/laundry_dryer001.mdl", Group = 3, Price = 10000, Health = 5000, DonatorOnly = false, Description = "Washer 1 (Large)"}
+Props[32] = {Model = "models/props_wasteland/laundry_dryer002.mdl", Group = 3, Price = 10000, Health = 5000, DonatorOnly = false, Description = "Washer 2 (Large)"}
+Props[33] = {Model = "models/props_c17/furnitureStove001a.mdl", Group = 3, Price = 5000, Health = 2500, DonatorOnly = false, Description = "Stove"}
+Props[34] = {Model = "models/props_c17/FurnitureWashingmachine001a.mdl", Group = 3, Price = 2000, Health = 1000, DonatorOnly = false, Description = "Washing Machine (Small)"}
+Props[35] = {Model = "models/props_junk/TrashDumpster01a.mdl", Group = 3, Price = 1000, Health = 750, DonatorOnly = false, Description = "Dumpster"}
+Props[36] = {Model = "models/props_wasteland/controlroom_filecabinet002a.mdl", Group = 3, Price = 800, Health = 500, DonatorOnly = false, Description = "Filing Cabinet"}
+Props[37] = {Model = "models/props_c17/gravestone_cross001a.mdl", Group = 3, Price = 1000, Health = 550, DonatorOnly = false, Description = "Gravestone (Large)"}
 
 -- Weapons
 Weapons[1] = {Model = "models/weapons/w_crossbow.mdl", Group = 7, Class = "weapon_crossbow", Name = "Crossbow", Price = 275000, Ammo = 25, AmmoClass = "XBowBolt", Damage = 100, DonatorOnly = true}
