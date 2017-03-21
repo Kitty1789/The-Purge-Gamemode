@@ -1,5 +1,10 @@
 ---- Purge Changelog ----
 
+20th March 2017 -  Fixed some code which wouldn't recognize. ~L
+
+19th March 2017 - Balanced some props' values and added some,
+also fixed issue with using pay command without a user sending to a random ~B
+
 17th March 2017 - Added this help menu ~B
 
 16th March 2017 - Changed SimpleXP HUD to match the main HUD,
