@@ -336,3 +336,16 @@ function GM:PurchaseWeapon(ply, cmd, args)
 	end
 end
 concommand.Add("PurgePurchaseWeapon", function(ply, cmd, args) hook.Call("PurchaseWeapon", GAMEMODE, ply, cmd, args) end)
+
+-----------------------------------------------------------------------------------------------
+----                                  Basic anti propkill                                  ----
+-----------------------------------------------------------------------------------------------
+
+function AntiPropDamage( victim, attacker )
+	if victim:IsPlayer() and attacker:GetClass() == "prop_physics" or attacker:GetClass() == "prop_dynamic" then
+		return false
+	else
+		return true
+	end
+end
+hook.Add("PlayerShouldTakeDamage", "purgeAntiPropDamage", AntiPropDamage)
