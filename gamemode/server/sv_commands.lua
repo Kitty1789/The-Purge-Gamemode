@@ -5,6 +5,7 @@ end
 
 --Pay player
 local function Purge_Pay(ply, txt)
+	txt = string.lower(txt)
 	local command = string.Explode(" ", txt)
 	if command[1] == "!pay" then
 		local ct = ChatText()
