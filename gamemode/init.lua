@@ -33,6 +33,12 @@ CreateConVar("purge_purge_time", 20, FCVAR_NOTIFY, "Time between build phase and
 CreateConVar("purge_fight_time", 300, FCVAR_NOTIFY, "Time allowed for fighting (def: 300)")
 CreateConVar("purge_reset_time", 10, FCVAR_NOTIFY, "Time after fight phase to allow water to drain and other ending tasks (def: 13 - Dont recommend changing)")
 
+-- Semi-useless globals, only used so the client can cache them.
+SetGlobalFloat("purgeBuildTime", GetConVar("purge_build_time"):GetFloat())
+SetGlobalFloat("purgePurgeTime", GetConVar("purge_purge_time"):GetFloat())
+SetGlobalFloat("purgeFightTime", GetConVar("purge_fight_time"):GetFloat())
+SetGlobalFloat("purgeResetTime", GetConVar("purge_reset_time"):GetFloat())
+
 -- Cash Convars
 CreateConVar("purge_participation_cash", 150, FCVAR_NOTIFY, "Amount of cash given to a player every 5 seconds of being alive (def: 50)")
 CreateConVar("purge_bonus_cash", 5000, FCVAR_NOTIFY, "Amount of cash given to the winner of a round (def: 500)")
