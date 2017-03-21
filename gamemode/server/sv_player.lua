@@ -1,4 +1,7 @@
 local PlayerMeta = FindMetaTable("Player")
+util.AddNetworkString( "purgeWeaponListTable" )
+util.AddNetworkString( "purgeWeaponListUpdate" )
+util.AddNetworkString( "plsgiveweaponlistibeengoodgirldaddy" )
 
 function GM:PlayerInitialSpawn(ply)
 	ply.Allow = false
