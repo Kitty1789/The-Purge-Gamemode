@@ -73,6 +73,7 @@ function GM:NewTimerController()
 			self:SetGameState(4)
 			StateTime = purge_resetTime
 		else
+			self:ParticipationBonus()
 			purge_fightTime = purge_fightTime - 1
 			StateTime = purge_fightTime
 		end
