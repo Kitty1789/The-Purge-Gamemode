@@ -2,6 +2,7 @@
 
 21st March 2017 - Completely recoded the round controller so it is more optimized,
 (this should make the server a bit less laggier) ~B
+Thanks to this optimisation update; The sell weapons option has been implemented. ~B
 
 20th March 2017 -  Fixed some code which wouldn't recognize. ~L
 
