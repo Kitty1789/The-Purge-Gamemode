@@ -98,10 +98,31 @@ With help from co-developer: blobles]]
 	text:SetText(panel4Text)
 	text:DockMargin(10,10,10,10)
 	
+	local panel5 = vgui.Create( "DPanel", helpSheet)
+	
+	local rankList = vgui.Create( "DListView", panel5 )
+	rankList:SetPos(5,1)
+	rankList:Dock( FILL )
+	rankList:SetMultiSelect( false )
+	rankList:AddColumn( "Rank" )
+	rankList:AddColumn( "XP To Level" )
+	rankList:AddColumn( "Total XP" )
+		
+	if SimpleXPConfig.CustomRanks and #SimpleXPConfig.CustomRanks > 0 then
+		for i,v in ipairs(SimpleXPConfig.CustomRanks) do
+			i = i -1
+			
+			local xpToL = SimpleXPCalculateLevelToXP(i+1) - SimpleXPCalculateLevelToXP(i)
+			rankList:AddLine(SimpleXPConfig.CustomRanks[i], xpToL, SimpleXPCalculateLevelToXP(i+1))
+		end
+	end
+	
+	
 	helpSheet:AddSheet( "About", panel1, "icon16/information.png" )
 	helpSheet:AddSheet( "Weapons", panel2, "icon16/gun.png" )
 	helpSheet:AddSheet( "Changelog", panel3, "icon16/pencil_add.png" )
 	helpSheet:AddSheet( "Credits", panel4, "icon16/heart.png" )
+	helpSheet:AddSheet( "SimpleXP Ranks", panel5, "icon16/award_star_gold_2.png")
 	
 end
 
