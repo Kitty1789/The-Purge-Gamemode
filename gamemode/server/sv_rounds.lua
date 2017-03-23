@@ -37,19 +37,19 @@ function GM:DeclareWinner(case, ply)
 			ply:AddCash(cash)
 
 			local ct = ChatText()
-			ct:AddText("[purge] ", Color(132, 199, 29, 255))
+			ct:AddText("[Purge] ", Color(132, 199, 29, 255))
 			ct:AddText(ply:Nick(), self:FormatColor(ply:GetPlayerColor()))
 			ct:AddText(" won and recieved an additional $"..cash.."!")
 			ct:SendAll()
 		end
 	elseif case == 2 then
 		local ct = ChatText()
-		ct:AddText("[purge] ", Color(132, 199, 29, 255))
+		ct:AddText("[Purge] ", Color(132, 199, 29, 255))
 		ct:AddText("Nobody won!")
 		ct:SendAll()
 	elseif case == 3 then
 		local ct = ChatText()
-		ct:AddText("[purge] ", Color(132, 199, 29, 255))
+		ct:AddText("[Purge] ", Color(132, 199, 29, 255))
 		ct:AddText("Round time limit reached. Nobody wins.")
 		ct:SendAll()
 	end
