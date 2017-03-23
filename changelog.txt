@@ -1,5 +1,7 @@
 ---- Purge Changelog ----
 
+22nd March 2017 - Added SimpleXP ranklist with their respective XP to level up and total xp ~B
+
 21st March 2017 - Completely recoded the round controller so it is more optimized,
 (this should make the server a bit less laggier) ~B
 Thanks to this optimisation update; The sell weapons option has been implemented. ~B
