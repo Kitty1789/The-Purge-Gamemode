@@ -41,9 +41,9 @@ The Purge is a round-based gamemode where you either hide or kill other players 
 Weapons are a crucial part in staying safe and alive in the purge, There are many different weapons to purchase (all of which are permanent) The best weapon for one person may not suit your play style. It would be good to test out a variety of different weapons, to see which suits you. You can purchase weapons by holding Q and going to the weapons tab. Please keep in mind, we cannot refund anything if you purchase something you did not mean to.]]
 	local panel4Text = [[---- Credits ----
 
-All credits go to WTC Ghostcommunity, all rights reserved.
-Owners: Lisa/Kermit 
-With help from co-developer: blobles]]
+All credits go to WTC - Ghostcommunity, all rights reserved.
+Owners: Lisa & Kermit 
+With help from Amateur Ex-Developer: Blobles]]
 	
 	local panel1 = vgui.Create( "DPanel", helpSheet ) -- About
 	local text = vgui.Create("DLabel", panel1)
