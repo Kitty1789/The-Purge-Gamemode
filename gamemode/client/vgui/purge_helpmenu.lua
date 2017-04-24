@@ -131,7 +131,7 @@ function PANEL:DoClick()
 end
 vgui.Register("purge_HelpMenu", PANEL)
 
-function GM:PlayerBindPress( ply, bind, pressed )
+function GAMEMODE:PlayerBindPress( ply, bind, pressed )
     if ( bind == "gm_showhelp" ) then RunConsoleCommand( "purge_help" ) end
 end
 
