@@ -1,8 +1,9 @@
 scoreboard = scoreboard or {}
 scoreboard.ranks = {}
-scoreboard.ranks['superadmin'] 	= 'Owner'
+scoreboard.ranks['owner'] 		= 'Owner'
+scoreboard.ranks['superadmin'] 	= 'SuperAdmin'
 scoreboard.ranks['admin'] 		= 'Admin'
-scoreboard.ranks['moderator'] 	= 'Moderator'
+scoreboard.ranks['moderator']	= 'Moderator'
 scoreboard.ranks['vip'] 		= 'VIP'
 scoreboard.ranks['user'] 		= 'User'
 function scoreboard:show()

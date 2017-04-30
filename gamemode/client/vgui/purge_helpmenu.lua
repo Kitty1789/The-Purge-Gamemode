@@ -17,7 +17,7 @@ function PANEL:Init()
 	end
 	HelpMenu = self.MainFrame
 	local wm,hm = HelpMenu:GetSize()
-	
+
 	local CloseButton = vgui.Create("DButton", HelpMenu)
 	CloseButton:SetText("X")
 	CloseButton.DoClick = function()
@@ -29,10 +29,10 @@ function PANEL:Init()
 	CloseButton.Paint = function(self, w, h)
 		draw.RoundedBox(0, 0, 0, w, h, Color(0,0,0,200))
 	end
-	
+
 	local helpSheet = vgui.Create( "DPropertySheet", HelpMenu )
 	helpSheet:Dock( FILL )
-	
+
 	local panel1Text = [[---- About ----
 
 The Purge is a round-based gamemode where you either hide or kill other players during the round, in the top left of the screen there is a set of timers, each representing a different state of the game, you are given time to build in the 'Rush to get home' stage, and then once that's over the purge will start activating, once the 'Purge or hide' state is active then your guns which you have purchased will be given to you, it is your choice to either stay in a safe area, or try and face other players. Be warned, other players may have much better guns than you! It is recommended for the first few rounds to hide until you accumulate enough money (You get money for just staying alive) to buy a basic gun. If you feel like you can't survive on your own, team up with other players with the !party command, but be warned, they might betray you. If you need additional information, feel free to ask anyone in chat, everyone is always willing to help!]]
@@ -42,9 +42,9 @@ Weapons are a crucial part in staying safe and alive in the purge, There are man
 	local panel4Text = [[---- Credits ----
 
 All credits go to WTC Ghostcommunity, all rights reserved.
-Owners: Lisa/Kermit 
+Owners: Lisa/Kermit
 With help from co-developer: blobles]]
-	
+
 	local panel1 = vgui.Create( "DPanel", helpSheet ) -- About
 	local text = vgui.Create("DLabel", panel1)
 	text:SetPos(5,1)
@@ -64,14 +64,14 @@ With help from co-developer: blobles]]
 	text:SetColor(Color(0,0,0,255))
 	text:SetContentAlignment(7)
 	text:SetText(panel2Text)
-	
+
 	local panel3 = vgui.Create( "DPanel", helpSheet ) -- Changelog
 	local text = vgui.Create("RichText", panel3)
 	text:SetPos(5,1)
 	text:InsertColorChange(0,0,0,255)
 	text:Dock( FILL )
 	text:DockMargin(10,10,10,10)
-	
+
 	local returnedData = "Fetching changelog.."
 
 	http.Fetch( "https://raw.githubusercontent.com/WTC-GhostCommunity/The-Purge-Gamemode/master/changelog.txt",
@@ -87,7 +87,7 @@ With help from co-developer: blobles]]
 		end
 	 )
 	text:SetWrap(true)
-	
+
 	local panel4 = vgui.Create( "DPanel", helpSheet ) -- Credits
 	local text = vgui.Create("DLabel", panel4)
 	text:SetPos(5,1)
@@ -97,9 +97,9 @@ With help from co-developer: blobles]]
 	text:SetContentAlignment(7)
 	text:SetText(panel4Text)
 	text:DockMargin(10,10,10,10)
-	
+
 	local panel5 = vgui.Create( "DPanel", helpSheet)
-	
+
 	local rankList = vgui.Create( "DListView", panel5 )
 	rankList:SetPos(5,1)
 	rankList:Dock( FILL )
@@ -107,23 +107,22 @@ With help from co-developer: blobles]]
 	rankList:AddColumn( "Rank" )
 	rankList:AddColumn( "XP To Level" )
 	rankList:AddColumn( "Total XP" )
-		
+
 	if SimpleXPConfig.CustomRanks and #SimpleXPConfig.CustomRanks > 0 then
 		for i,v in ipairs(SimpleXPConfig.CustomRanks) do
 			i = i -1
-			
+
 			local xpToL = SimpleXPCalculateLevelToXP(i+1) - SimpleXPCalculateLevelToXP(i)
 			rankList:AddLine(SimpleXPConfig.CustomRanks[i], xpToL, SimpleXPCalculateLevelToXP(i+1))
 		end
 	end
-	
-	
+
+
 	helpSheet:AddSheet( "About", panel1, "icon16/information.png" )
 	helpSheet:AddSheet( "Weapons", panel2, "icon16/gun.png" )
 	helpSheet:AddSheet( "Changelog", panel3, "icon16/pencil_add.png" )
 	helpSheet:AddSheet( "Credits", panel4, "icon16/heart.png" )
 	helpSheet:AddSheet( "SimpleXP Ranks", panel5, "icon16/award_star_gold_2.png")
-	
 end
 
 function PANEL:DoClick()
@@ -140,7 +139,7 @@ function purge_helpmenucmd()
 	if HelpMenu == nil or not HelpMenu:IsValid() then
 		vgui.Create("purge_HelpMenu")
 		gui.EnableScreenClicker(true)
-		RestoreCursorPosition()	
+		RestoreCursorPosition()
 	else
 		if HelpMenu:IsVisible() then
 			HelpMenu:SetVisible(false)
@@ -149,9 +148,9 @@ function purge_helpmenucmd()
 		else
 			HelpMenu:SetVisible(true)
 			gui.EnableScreenClicker(true)
-			RestoreCursorPosition()	
+			RestoreCursorPosition()
 		end
 	end
-	
+
 end
 concommand.Add("purge_help", purge_helpmenucmd)

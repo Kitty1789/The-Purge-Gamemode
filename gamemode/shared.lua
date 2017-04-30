@@ -2,7 +2,6 @@ DeriveGamemode("sandbox")
 
 GM.Name 	= "The Purge"
 GM.Author 	= "WTC - GhostCommunity"
-GM.Base 	= "Flood 2.0"
 GM.Version  = "1.5"
 GM.Email 	= "N/A"
 GM.Website 	= "https://wtcghostcommunity.com"
