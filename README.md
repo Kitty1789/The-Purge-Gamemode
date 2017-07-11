@@ -1,8 +1,8 @@
 # The Purge Gamemode
 
-**Copyright (c) 2017 [WTC - GhostCommunity](https://wtcghostcommunity.com), All rights reserved.**
+**Copyright (c) 2017 Lisa, All rights reserved.**
 
-*If we should get notified you're using our code, we'll complain a DMCA Takedown request and contact our lawyer.*
+*If I should get notified you're using my code, I'll complain a DMCA Takedown request and contact my lawyer.*
 
 
 *Based on The Flood 2.0, cus apparently there're kids out there -cough-EM Members-cough- that are stupid*
@@ -34,6 +34,6 @@ SOFTWARE.
 
 Note, the MIT license does NOT apply on the Purge gamemode, it applies on the flood gamemode, and purge is a new gamemode, BASED on the flood.
 
-### Copyright holders
+### Communities which may run the gamemode, but not share it
 - [WTC - GhostCommunity](https://wtcghostcommunity.com)
 - [TangoWorldWide (Balon)](https://tangoworldwide.net/)
